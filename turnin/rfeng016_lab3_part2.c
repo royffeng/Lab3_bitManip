@@ -29,7 +29,7 @@ int main(void) {
         // PC4 and PC5 lights
         else if (tmpA == 3 || tmpA == 4) {
             tmpC = 0x30;
-        } else if (tmpA == 5 || tmpA = 6) {
+        } else if (tmpA == 5 || tmpA == 6) {
             tmpC = 0x38;
         } else if (tmpA == 7 || tmpA == 8 || tmpA == 9) {
             tmpC = 0x3C;
