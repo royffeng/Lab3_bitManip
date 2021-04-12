@@ -15,32 +15,30 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
-    DDRB = 0x00; PORTB = 0xFF; // Configure port B's 8 pins as inputs
     DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs
     unsigned char tmpA = 0x00;
-    unsigned char tmpB = 0x00;
     unsigned char tmpC = 0x00;
-    unsigned char tmp = 0x00;
     /* Insert your solution below */
     while (1) {
-        tmpA = PINA;
-        tmpB = PINB;
+        //tmpA = PINA;
         tmpC = 0x00;
-        while (tmpA != 0x00) {
-            tmp = tmpA & 0x01;
-            if (tmp != 0x00) {
-                tmpC += 1;
-            }
-            tmpA = tmpA >> 1;
-        }
-        while (tmpB != 0x00) {
-            tmp = tmpB & 0x01;
-            if (tmp != 0x00) {
-                tmpC += 1;
-            } 
-            tmpB = tmpB >> 1;
-        }
-    PORTC = tmpC;
+        if (PINA >= 1 && PINA <= 2) {
+			tempC = 0x20;
+		} else if(PINA >= 3 && PINA <= 4) {
+			tempC = 0x30;
+		} else if (PINA >= 5 && PINA <= 6) {
+			tempC = 0x38;
+		} else if (PINA >= 7 && PINA <= 9) {
+			tempC = 0x3C;
+		} else if (PINA >= 10 && PINA <= 12) {
+			tempC = 0x3E;
+		} else if (PINA >= 13 && PINA <= 15) {
+            tempC = 0x3F;
+		}
+		if (PINA >= 4) {
+            tempC = tempC | 0x40;
+		}
+        PORTC = tmpC;
     }
-    return 1;
+    return 0;
 }
