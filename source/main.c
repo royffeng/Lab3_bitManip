@@ -14,19 +14,26 @@
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-    DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
-    DDRB = 0xFF; PORTB = 0x00; // Configure port B's 8 pins as outputs
-    DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs
+    //DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
+    DDRD = 0x00; PORTC = 0xFF; // Configure port C's 8 pins as inputs
+    DDRB = 0xFE; PORTB = 0x01; // Configure port B's 8 pins as outputs
     //unsigned char tmpA;
     unsigned char tmpB;
-    unsigned char tmpC;
+    unsigned short weight;
     /* Insert your solution below */
     while (1) {
-        tmpB = (PINA & 0xF0) >> 4;
-        tmpC = (PINA & 0x0F) << 4;
-
+        tmpB = 0x00;
+        weight = 0x00;
+        
+        weight = (PIND << 1);
+        weight += PINB & 0x01;
+        
+        if (weight >= 70) {
+            tmpB = tmpB | 0x02;
+        } else if (weight > 5) {
+            tmpB = tmpB | 0x04;
+        } else {} // does nothing
         PORTB = tmpB;
-        PORTC = tmpC;
     }
     return 0;
 }
