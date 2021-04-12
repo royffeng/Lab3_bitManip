@@ -20,25 +20,23 @@ int main(void) {
     unsigned char tmpC = 0x00;
     /* Insert your solution below */
     while (1) {
-        tmpA = PINA & 0x0F;
-        if (tmpA < 0x05) {
-            if (tmpA == 0x01 || tmpA == 0x02) {
-                tmpC = 0x60;
-            } else if (tmpA == 0x03 || tmpA == 0x04) {
-                tmpC = 0x70;
-            } else {
-                tmpC = 0x40;
-            }
-        } else {
-            if (tmpA == 0x05 || tmpA == 0x06) {
-                tmpC = 0x38;
-            } else if (tmpA == 0x07 || tmpA == 0x08 || tmpA == 0x09) {
-                tmpC = 0x3C;
-            } else if (tmpA == 0x0A || tmpA == 0x0B || tmpA == 0x0C) {
-                tmpC = 0x3E;
-            } else if (tmpA == 0x0D || tmpA == 0x0E || tmpA == 0x0F) {
-                tmpC = 0x3F;
-            }
+        //tmpA = PINA;
+        tmpC = 0x00;
+        if (PINA >= 1 && PINA <= 2) {
+            tmpC = 0x20;
+        } else if(PINA >= 3 && PINA <= 4) {
+            tmpC = 0x30;
+        } else if (PINA >= 5 && PINA <= 6) {
+            tmpC = 0x38;
+        } else if (PINA >= 7 && PINA <= 9) {
+            tmpC = 0x3C;
+        } else if (PINA >= 10 && PINA <= 12) {
+            tmpC = 0x3E;
+        } else if (PINA >= 13 && PINA <= 15) {
+            tmpC = 0x3F;
+        }
+        if (PINA >= 4) {
+            tmpC = tmpC | 0x40;
         }
         PORTC = tmpC;
     }
