@@ -40,5 +40,7 @@ int main(void) {
                 tmpC = 0x3F;
             }
         }
-        return 0;
+        PORTC = tmpC;
+    }
+    return 0;
 }
