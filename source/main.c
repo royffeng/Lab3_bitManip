@@ -15,34 +15,17 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
+    DDRB = 0xFF; PORTB = 0x00; // Configure port B's 8 pins as outputs
     DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs
-    //unsigned char tmpA = 0x00;
-    unsigned char tmpC = 0x00;
-    unsigned char nib;
+    //unsigned char tmpA;
+    unsigned char tmpB;
+    unsigned char tmpC;
     /* Insert your solution below */
     while (1) {
-        //tmpA = PINA;
-        tmpC = 0x00;
-        nib = PINA & 0x0F;
-        if (nib >= 1 && nib <= 2) {
-            tmpC = 0x20;
-	} else if(nib >= 3 && nib <= 4) {
-            tmpC = 0x30;
-	} else if (nib >= 5 && nib <= 6) {
-            tmpC = 0x38;
-	} else if (nib >= 7 && nib <= 9) {
-            tmpC = 0x3C;
-	} else if (nib >= 10 && nib <= 12) {
-	    tmpC = 0x3E;
-	} else if (nib >= 13 && nib <= 15) {
-            tmpC = 0x3F;
-	}
-        if ((PINA & 0x10) && (PINA & 0x20) && !(PINA & 0x40)) {
-            tmpC = tmpC | 0x80;
-        }
-        if (nib <= 4) {
-            tmpC = tmpC | 0x40;
-        }
+        tmpB = (PINA & 0xF0) >> 4;
+        tmpC = (PINA & 0x0F) << 4;
+
+        PORTB = tmpB;
         PORTC = tmpC;
     }
     return 0;
