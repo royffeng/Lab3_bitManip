@@ -20,22 +20,26 @@ int main(void) {
     unsigned char tmpC = 0x00;
     /* Insert your solution below */
     while (1) {
-        //tmpA = PINA;
+        tmpA = PINA & 0x0F;
         tmpC = 0x00;
-        if (PINA >= 1 && PINA <= 2) {
-            tmpC = 0x20;
-        } else if(PINA >= 3 && PINA <= 4) {
+        // PC5 light
+        if (tmpA == 1 || tmp2 == 2) {
             tmpC = 0x30;
-        } else if (PINA >= 5 && PINA <= 6) {
+        }
+        // PC4 and PC5 lights
+        else if (tmpA == 3 || tmpA == 4) {
+            tmpC = 0x30;
+        } else if (tmpA == 5 || tmpA = 6) {
             tmpC = 0x38;
-        } else if (PINA >= 7 && PINA <= 9) {
+        } else if (tmpA == 7 || tmpA == 8 || tmpA == 9) {
             tmpC = 0x3C;
-        } else if (PINA >= 10 && PINA <= 12) {
+        } else if (tmpA == 10 || tmpA == 11 || tmpA == 12) {
             tmpC = 0x3E;
-        } else if (PINA >= 13 && PINA <= 15) {
+        } else if (tmpA == 13 || tmpA == 14 || tmpA == 15) {
             tmpC = 0x3F;
         }
-        if (PINA >= 4) {
+        // low fuel light
+        if (tmpA <= 4) {
             tmpC = tmpC | 0x40;
         }
         PORTC = tmpC;
