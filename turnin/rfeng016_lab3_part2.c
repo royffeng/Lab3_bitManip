@@ -16,14 +16,14 @@ int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
     DDRC = 0xFF; PORTC = 0x00; // Configure port C's 8 pins as outputs
-    //unsigned char tmpA = 0x00;
+    unsigned char tmpA = 0x00;
     unsigned char tmpC = 0x00;
     /* Insert your solution below */
     while (1) {
         tmpA = PINA & 0x0F;
         tmpC = 0x00;
         // PC5 light
-        if (tmpA == 1 || tmp2 == 2) {
+        if (tmpA == 1 || tmpA == 2) {
             tmpC = 0x30;
         }
         // PC4 and PC5 lights
